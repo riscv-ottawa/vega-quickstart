@@ -91,7 +91,7 @@ DRIVER_DIR := $(DEVICE_DIR)/drivers
 UTIL_DIR   := $(DEVICE_DIR)/utilities
 BOARD_DIR  := $(SDK_ROOT)/boards/rv32m1_vega
 
-LDSCRIPT    := $(BOARD_DIR)/driver_examples/gpio/led_output/ri5cy/riscvgcc/RV32M1_ri5cy_flash.ld
+LDSCRIPT    := support/sdk/RV32M1_ri5cy_flash.ld
 
 ARCH_FLAGS := -march=rv32imc
 

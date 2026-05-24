@@ -26,6 +26,11 @@
 
 cpu: CPU.Ri5cy @ sysbus
     privilegedArchitecture: PrivilegedArchitecture.Priv1_10
+    init:
+        // UTVEC (RISC-V N extension, CSR 0x005) is written by the SDK's
+        // SystemInit; Renode's Ri5cy doesn't implement it, so register a
+        // no-op CSR to silence the illegal-instruction warning.
+        RegisterCustomCSR "utvec" 0x5 User
 
 flash: Memory.MappedMemory @ sysbus 0x0
     size: 0x100000
@@ -332,6 +337,7 @@ sysbus:
     init:
         // SCG clock status registers – return "valid/ready" for SIRC, FIRC, LPFLL
         Tag <0x4002C200 0x4> "SIRCCSR"  0xFFFFFFFF  // Slow IRC: valid, high-range
+        Tag <0x4002C204 0x4> "SIRCDIV"  0x00010101  // SIRC dividers: divide by 1 (avoids div=0 path)
         Tag <0x4002C208 0x4> "SIRCCFG"  0x00000001  // SIRC high-range (8 MHz)
         Tag <0x4002C300 0x4> "FIRCCSR"  0xFFFFFFFF  // Fast IRC: valid
         Tag <0x4002C304 0x4> "FIRCDIV"  0x00010101  // FIRC dividers: divide by 1
