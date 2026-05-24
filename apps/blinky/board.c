@@ -12,9 +12,9 @@ void BOARD_InitPins(void)
     CLOCK_EnableClock(kCLOCK_PortA);
     CLOCK_EnableClock(kCLOCK_PortC);
 
-    PORT_SetPinMux(PORTA, 24U, kPORT_MuxAsGpio);  /* PTA24 - Red LED */
-    PORT_SetPinMux(PORTC, 7U, kPORT_MuxAlt3);     /* PTC7  - LPUART0_RX */
-    PORT_SetPinMux(PORTC, 8U, kPORT_MuxAlt3);     /* PTC8  - LPUART0_TX */
+    PORT_SetPinMux(PORTA, BOARD_LED_GPIO_PIN, kPORT_MuxAsGpio);  /* PTA24 - Red LED */
+    PORT_SetPinMux(PORTC, 7U, kPORT_MuxAlt3);                    /* PTC7  - LPUART0_RX */
+    PORT_SetPinMux(PORTC, 8U, kPORT_MuxAlt3);                    /* PTC8  - LPUART0_TX */
 }
 
 /*
