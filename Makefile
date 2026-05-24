@@ -123,7 +123,8 @@ INCLUDES := \
 
 DEFINES := \
 	-DCPU_RV32M1_ri5cy \
-	-D__STARTUP_CLEAR_BSS
+	-D__STARTUP_CLEAR_BSS \
+	-DPRINTF_ADVANCED_ENABLE=1
 
 # Per-app overrides land here, before final flags are assembled.
 -include $(APP_DIR)/config.mk
