@@ -61,14 +61,13 @@ gpioe: GPIOPort.NXP_GPIO @ sysbus 0x4100F000
 // Modelled as a simple read/write register file via PythonPeripheral.
 // Required: Zephyr GPIO and pinmux drivers probe these before using GPIO.
 
-porta: Python.PythonPeripheral @ sysbus 0x40046000
-    size: 0xD0
-    initable: true
-    script: '''
-if request.IsInit: regs = [0x00000000] * (size / 4)
-if request.IsRead: request.Value = regs[request.Offset >> 2]
-if request.IsWrite: regs[request.Offset >> 2] = request.Value
-'''
+// PORTA is a full model (not a register-file stub) so GPIO pin
+// interrupts work in simulation: it does edge detection from PCR[n].IRQC,
+// latches ISFR, and drives its IRQ to the core. PORTA_IRQn is 18, a
+// direct EVENT_UNIT line; the EVENT_UNIT is stubbed here, so the IRQ
+// wires straight to the core like the INTMUX lines do. See NXP_PORT.cs.
+porta: GPIOPort.NXP_PORT @ sysbus 0x40046000
+    IRQ -> cpu@18
 
 portb: Python.PythonPeripheral @ sysbus 0x40047000
     size: 0xD0
