@@ -218,13 +218,28 @@ if request.IsWrite: regs[request.Offset >> 2] = request.Value
 //
 // lptmr0 is used as the Zephyr system timer (SIRC-clocked).
 // lptmr1 and lptmr2 are additional instances.
+//
+// The INTMUX source bit for LPTMR0 is 7, matching the SDK
+// (LPTMR0_IRQn = 39, with INTMUX sources starting at IRQ 32, so bit
+// 39 - 32 = 7) and Zephyr's dts (interrupts = <7>; interrupt-parent =
+// <&intmux0_ch0>). The upstream Renode platform incorrectly wires
+// this to bit 24 - we override it here.
+
+// Frequency defaults to 8 MHz in the Renode model but the LPTMR's
+// PSR.PCS field is not modelled, so software-side clock selection is
+// ignored. Pin the model to 1 kHz to match the LPO clock that PCS=1
+// selects on real hardware - this way CMR values computed from the
+// 1 kHz LPO produce the right wall-clock period under simulation too.
 
 lptmr0: UART.LowPower_Timer @ sysbus 0x40032000
-    -> intmux0#0@24
+    frequency: 1000
+    -> intmux0#0@7
 
 lptmr1: UART.LowPower_Timer @ sysbus 0x40033000
+    frequency: 1000
 
 lptmr2: UART.LowPower_Timer @ sysbus 0x4102B000
+    frequency: 1000
 
 // ---- Timer/PWM Modules (TPM) -------------------------------------------------------------------------------
 //
