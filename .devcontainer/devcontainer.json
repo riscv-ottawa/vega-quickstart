@@ -19,6 +19,7 @@
         "eamodio.gitlens",
         "redhat.vscode-xml",
         "redhat.vscode-yaml",
+        "zhwu95.riscv"
       ],
     },
   },
