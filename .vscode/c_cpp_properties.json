@@ -21,7 +21,7 @@
             "name": "vega",
             "intelliSenseMode": "gcc-x86",
             "compilerPath": "/opt/riscv32i/bin/riscv32-unknown-elf-gcc",
-            "cStandard": "gnu89",
+            "cStandard": "gnu99",
             "cppStandard": "c++11"
         }
     ],

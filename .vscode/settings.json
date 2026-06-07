@@ -1,4 +1,4 @@
 {
     "C_Cpp.errorSquiggles": "enabled",
-    "vega.app": "blinky"
+    "vega.app": "vegaconsole-irq"
 }
