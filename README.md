@@ -1,6 +1,6 @@
 # RISC-V Embedded Systems Training (VEGA edition)
 
-Baremetal example applications for the [RV32M1-VEGA](https://open-isa.org/) board,
+Baremetal example applications for the RV32M1-VEGA board,
 built around the RI5CY (RISC-V) core. This repository is the hands-on companion to
 the training book at **[vega.riscvottawa.ca](https://vega.riscvottawa.ca)** - each app maps to a section of the book, and the book walks through the concepts the code demonstrates.
 
