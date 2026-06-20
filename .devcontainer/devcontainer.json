@@ -1,10 +1,12 @@
 {
-  "dockerFile": "../Containerfile",
-  "build": {
-    "args": {
-      "WORKSPACE": "${containerWorkspaceFolder}",
-    },
-  },
+  "image": "ghcr.io/riscv-ottawa/vega-quickstart:latest",
+  // Uncomment below to build image locally instead
+  // "dockerFile": "../Containerfile",
+  // "build": {
+  //   "args": {
+  //     "WORKSPACE": "${containerWorkspaceFolder}",
+  //   },
+  // },
   "remoteUser": "dev",
   "runArgs": ["--name=${localWorkspaceFolderBasename}", "--privileged", "--hostname=vega"],
   "containerEnv": {},
@@ -19,7 +21,7 @@
         "eamodio.gitlens",
         "redhat.vscode-xml",
         "redhat.vscode-yaml",
-        "zhwu95.riscv"
+        "zhwu95.riscv",
       ],
     },
   },
